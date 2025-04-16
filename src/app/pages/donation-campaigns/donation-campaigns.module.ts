@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DonationCampaignsComponent } from './donation-campaigns.component';
 import { CampaignDetailComponent } from './campaign-detail.component';
 import { CampaignFormComponent } from './campaign-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CampaignFormComponent } from './campaign-form.component';
     DonationCampaignsRoutingModule,
     DonationCampaignsComponent,
     CampaignDetailComponent,
-    CampaignFormComponent
+    CampaignFormComponent,
+    FormsModule
   ]
 })
 export class DonationCampaignsModule {}

@@ -1,13 +1,14 @@
 // src/app/pages/donation-campaigns/campaign-form.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { CampaignService } from '../../services/services/campaign.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaign-form',
   templateUrl: './campaign-form.component.html',
-  styleUrls: ['./campaign-detail.component.scss']
+  styleUrls: ['./campaign-detail.component.scss'],
+  imports: [ReactiveFormsModule],
 })
 export class CampaignFormComponent implements OnInit {
   form!: FormGroup;

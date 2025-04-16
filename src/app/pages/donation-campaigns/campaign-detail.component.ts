@@ -4,14 +4,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CampaignService } from '../../services/services/campaign.service';
 import { PaymentService } from '../../services/services/payment.service';
 import { Campaign } from '../../services/models/campaign.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { loadStripe, Stripe, StripeCardElement } from '@stripe/stripe-js';
 import { environment } from '../../../environments/environment';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-campaign-detail',
   templateUrl: './campaign-detail.component.html',
-  styleUrls: ['./campaign-detail.component.scss']
+  styleUrls: ['./campaign-detail.component.scss'],
+  imports: [ReactiveFormsModule,
+    CommonModule
+  ]
 })
 export class CampaignDetailComponent implements OnInit {
   campaign!: Campaign;

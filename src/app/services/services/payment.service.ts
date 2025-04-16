@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PaymentRequest } from '../models/payment-request.model';
 import { PaymentResponse } from '../models/payment-response.model';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PaymentService {
