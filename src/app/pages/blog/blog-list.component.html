@@ -1,0 +1,15 @@
+<!-- src/app/pages/blog/blog-list.component.html -->
+<div class="container my-4">
+  <h2>Blog Posts</h2>
+  <div *ngFor="let p of posts" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ p.title }}</h5>
+      <!-- <p class="card-text">{{ p.content | slice:0:150 }}…</p> -->
+      <p class="card-text">{{ p.content.substr(0, 150) }}…</p>
+      <a [routerLink]="[p.id]" class="btn btn-link">Read More</a>
+    </div>
+    <div class="card-footer text-muted">
+      By {{ p.authorName }} on {{ p.publishedDate | date }}
+    </div>
+  </div>
+</div>

@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+// src/app/pages/donation-campaigns/donation-campaigns.component.ts
+import { Component, OnInit } from '@angular/core';
+import { CampaignService } from '../../services/services/campaign.service';
+import { Campaign } from '../../services/models/campaign.model';
 
 @Component({
   selector: 'app-donation-campaigns',
-  standalone: true,
-  template: `
-    <div class="container py-5 text-center">
-      <h2>Donation Campaigns</h2>
-      <p>– coming soon –</p>
-    </div>
-  `
+  templateUrl: './donation-campaigns.component.html',
+  styleUrls: ['./donation-campaigns.component.scss']
 })
-export class DonationCampaignsComponent {}
+export class DonationCampaignsComponent implements OnInit {
+  campaigns: Campaign[] = [];
+
+  constructor(private svc: CampaignService) {}
+
+  ngOnInit() {
+    this.svc.getAll().subscribe(list => this.campaigns = list);
+  }
+}

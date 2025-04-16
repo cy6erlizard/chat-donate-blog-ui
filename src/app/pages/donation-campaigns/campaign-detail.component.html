@@ -1,0 +1,31 @@
+<!-- src/app/pages/donation-campaigns/campaign-detail.component.html -->
+<div class="container my-4" *ngIf="campaign">
+  <h2>{{ campaign.title }}</h2>
+  <img *ngIf="campaign.imageUrl" [src]="campaign.imageUrl" class="img-fluid mb-3" alt="">
+  <p>{{ campaign.description }}</p>
+  <p><strong>Raised:</strong> {{ campaign.currentAmount | currency }} / {{ campaign.goal | currency }}</p>
+
+  <h4>Make a Donation</h4>
+  <form [formGroup]="donationForm" (ngSubmit)="onDonate()">
+    <div class="mb-3">
+      <label>Amount</label>
+      <input type="number" formControlName="amount" class="form-control" />
+      <div *ngIf="donationForm.get('amount')?.invalid && donationForm.get('amount')?.touched"
+           class="text-danger">Enter a valid amount.</div>
+    </div>
+    <div class="mb-3">
+      <label>Your Name</label>
+      <input type="text" formControlName="donorName" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label>Your Email</label>
+      <input type="email" formControlName="donorEmail" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label>Card Information</label>
+      <div id="card-element" class="form-control p-2"></div>
+    </div>
+    <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+    <button class="btn btn-primary" [disabled]="processing">Donate</button>
+  </form>
+</div>

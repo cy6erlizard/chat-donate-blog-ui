@@ -1,39 +1,28 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { MainComponent } from './pages/main/main.component';
-
-/**
- * TODO: when you’re ready, replace
- *   import { DonationCampaignsComponent } from './pages/donation-campaigns/...';
- *   import { BlogComponent } from './pages/blog/...';
- * with your actual implementations.
- */
+import { AuthGuard } from './utils/keycloak/auth.guard';  // assume you have one
 
 export const routes: Routes = [
-  // root landing + navbar
+  { path: '', component: LandingComponent },
   {
-    path: '',
-    component: LandingComponent
-  },
-  // placeholder routes for when you implement these pages:
-  {
-    path: 'donation-campaigns',
-    loadComponent: () => import('./pages/donation-campaigns/donation-campaigns.component')
-      .then(m => m.DonationCampaignsComponent)
+    path: 'campaigns',
+    loadChildren: () =>
+      import('./pages/donation-campaigns/donation-campaigns.module')
+        .then(m => m.DonationCampaignsModule)
   },
   {
     path: 'blog',
-    loadComponent: () => import('./pages/blog/blog.component')
-      .then(m => m.BlogComponent)
+    loadChildren: () =>
+      import('./pages/blog/blog.module').then(m => m.BlogModule)
   },
-  // your existing chat page
   {
-    path: 'chat',
-    component: MainComponent
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
-  // fallback
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  { path: 'chat', component: MainComponent },
+  { path: '**', redirectTo: '' }
 ];
