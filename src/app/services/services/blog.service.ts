@@ -12,8 +12,14 @@ export class BlogService {
 
   constructor(private http: HttpClient) {}
 
+  /** All published posts */
   getAll(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(this.base);
+  }
+
+  /** The current user’s posts */
+  getMine(): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(`${this.base}/my-posts`);
   }
 
   getById(id: string): Observable<BlogPost> {

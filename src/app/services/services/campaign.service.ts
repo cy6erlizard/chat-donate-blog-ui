@@ -11,8 +11,14 @@ export class CampaignService {
 
   constructor(private http: HttpClient) {}
 
+  /** Everyone’s active campaigns */
   getAll(): Observable<Campaign[]> {
     return this.http.get<Campaign[]>(this.base);
+  }
+
+  /** The current user’s campaigns */
+  getMine(): Observable<Campaign[]> {
+    return this.http.get<Campaign[]>(`${this.base}/my-campaigns`);
   }
 
   getById(id: string): Observable<Campaign> {
